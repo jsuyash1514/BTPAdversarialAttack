@@ -10,3 +10,5 @@ Backend
 - Run `python manage.py createsuperuser` // Choose username and password
 - Run `python manage.py runserver`
 
+You can visit localhost:8000/admin/ for the Admin site.
+
