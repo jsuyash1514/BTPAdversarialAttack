@@ -12,8 +12,8 @@ class ResultSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         instance = super().create(validated_data)
-        instance.output1.name = f(instance.input.name)
-        # instance.output2.name = g(instance.output1.name)
+        instance.output1 = f(instance.input.name)
+        instance.output2 = g(instance.input.name)
         instance.active = True
         instance.save()
         return instance

@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BaseRepository {
     public static final int DEFAULT_TIMEOUT = 300;
 
-    public static final String BASE_URL = "http://192.168.45.250:8000/";
+    public static final String BASE_URL = "http://192.168.37.250:8000/";
 
     public static Retrofit.Builder getDefaultBuilder() {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()

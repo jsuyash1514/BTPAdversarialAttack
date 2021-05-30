@@ -1,8 +1,5 @@
 package com.example.btpfrontend.ui;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,8 +9,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.example.btpfrontend.R;
+import com.example.btpfrontend.model.ResponseModel;
 import com.example.btpfrontend.network.ImageRepository;
 import com.example.btpfrontend.utils.FileUtils;
 
@@ -26,8 +27,6 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.http.Multipart;
 
 public class ImageInputActivity extends AppCompatActivity {
 
@@ -56,7 +55,7 @@ public class ImageInputActivity extends AppCompatActivity {
                 ProgressDialog progressDialog = new ProgressDialog(this);
                 progressDialog.setMessage("Uploading Image");
                 progressDialog.show();
-                File file = FileUtils.getFileFromUri(this,imageUri);
+                File file = FileUtils.getFileFromUri(this, imageUri);
                 if (file != null && file.exists()) {
                     RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
                     MultipartBody.Part imagefile = MultipartBody.Part.createFormData("input", System.currentTimeMillis() + "_" + file.getName(), requestFile);
@@ -64,16 +63,21 @@ public class ImageInputActivity extends AppCompatActivity {
                             .uploadImage(imagefile)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Observer<ResponseBody>() {
+                            .subscribe(new Observer<ResponseModel>() {
                                 @Override
                                 public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
 
                                 }
 
                                 @Override
-                                public void onNext(@io.reactivex.annotations.NonNull ResponseBody responseBody) {
+                                public void onNext(@io.reactivex.annotations.NonNull ResponseModel response) {
                                     progressDialog.hide();
-                                    Toast.makeText(getApplicationContext(), "Upload image successful!", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(), ImageOutputActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putParcelable("response", response);
+                                    intent.putExtra("response", bundle);
+                                    startActivity(intent);
+                                    finish();
                                 }
 
                                 @Override
@@ -106,5 +110,11 @@ public class ImageInputActivity extends AppCompatActivity {
                     .placeholder(R.drawable.image_icon)
                     .into(inputImage);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

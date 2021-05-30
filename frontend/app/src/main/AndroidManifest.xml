@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/btplogo"
@@ -15,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BTPfrontend"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.ImageInputActivity"></activity>
+        <activity android:name=".ui.ImageOutputActivity"></activity>
+        <activity android:name=".ui.ImageInputActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
