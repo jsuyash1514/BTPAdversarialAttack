@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class ImageOutputActivity extends AppCompatActivity {
     ImageView inputImage, outputImage;
-    TextView ind, inc, outd, outc;
+    TextView ind, inc, outd, outc, inlenet, outlenet;
     Button closeButton;
 
     @Override
@@ -36,6 +36,8 @@ public class ImageOutputActivity extends AppCompatActivity {
         inc = findViewById(R.id.input_classification);
         outd = findViewById(R.id.output_detection);
         outc = findViewById(R.id.output_classification);
+        inlenet = findViewById(R.id.input_lenet_classification);
+        outlenet = findViewById(R.id.output_lenet_classification);
         closeButton = findViewById(R.id.close_button);
 
         Glide.with(this)
@@ -59,6 +61,12 @@ public class ImageOutputActivity extends AppCompatActivity {
             inc.setText("Classified as : " + output1.getInt("label_normal"));
             outd.setText(output2.getString("detection_output_adver"));
             outc.setText("Classified as : " + output2.getInt("label_adver"));
+
+            JSONObject inputLenet = new JSONObject(output1.getString("normal_lenet"));
+            inlenet.setText("Lenet Model : Classified as " + inputLenet.getInt("lenet_class") + " (" + inputLenet.getDouble("lenet_accuracy") + ")");
+            JSONObject outputLenet = new JSONObject(output1.getString("adv_lenet"));
+            outlenet.setText("Lenet Model : Classified as " + outputLenet.getInt("lenet_class") + " (" + outputLenet.getDouble("lenet_accuracy") + ")");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

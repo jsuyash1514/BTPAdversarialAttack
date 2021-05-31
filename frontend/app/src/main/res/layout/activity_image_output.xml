@@ -50,6 +50,16 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/input_lenet_classification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="#148F77"
+            android:textSize="18sp" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -87,6 +97,16 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:textColor="#C0392B"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/output_lenet_classification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="#148F77"
             android:textSize="18sp" />
 
         <Button

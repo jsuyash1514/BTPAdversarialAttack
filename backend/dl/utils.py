@@ -287,7 +287,7 @@ def g(input_image_name):
 
         if alpha.item() + lamda*beta > thresh:
             #print("detected adversarial")
-            str_out = "Detected image adversarial sample"
+            str_out = "Detected image to be adversarial sample"
             predict = strong_adv_model(adv_untargeted.float())
             predict_lab = np.argmax(predict, axis=-1)
             #print("\n The predicted label for the image is: {}".format(predict_lab))

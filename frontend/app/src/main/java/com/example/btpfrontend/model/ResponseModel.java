@@ -37,24 +37,12 @@ public class ResponseModel implements Parcelable {
         return inputImageUri;
     }
 
-    public void setInputImageUri(String inputImageUri) {
-        this.inputImageUri = inputImageUri;
-    }
-
     public String getOutputjson1() {
         return outputjson1;
     }
 
-    public void setOutputjson1(String outputjson1) {
-        this.outputjson1 = outputjson1;
-    }
-
     public String getOutputjson2() {
         return outputjson2;
-    }
-
-    public void setOutputjson2(String outputjson2) {
-        this.outputjson2 = outputjson2;
     }
 
     @Override
