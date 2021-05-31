@@ -73,6 +73,7 @@ public class ImageOutputActivity extends AppCompatActivity {
 
         closeButton.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         });
     }
 
