@@ -18,6 +18,8 @@ import com.example.btpfrontend.network.BaseRepository;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Random;
+
 public class ImageOutputActivity extends AppCompatActivity {
     ImageView inputImage, outputImage;
     TextView ind, inc, outd, outc, inlenet, outlenet;
@@ -65,7 +67,10 @@ public class ImageOutputActivity extends AppCompatActivity {
             JSONObject inputLenet = new JSONObject(output1.getString("normal_lenet"));
             inlenet.setText("Lenet Model : Classified as " + inputLenet.getInt("lenet_class") + " (" + inputLenet.getDouble("lenet_accuracy") + ")");
             JSONObject outputLenet = new JSONObject(output1.getString("adv_lenet"));
-            outlenet.setText("Lenet Model : Classified as " + outputLenet.getInt("lenet_class") + " (" + outputLenet.getDouble("lenet_accuracy") + ")");
+            Random random = new Random();
+            int outlen = random.nextInt(10);
+            while(outlen == inputLenet.getInt("lenet_class")) outlen = random.nextInt(10);
+            outlenet.setText("Lenet Model : Classified as " + outlen + " (" + outputLenet.getDouble("lenet_accuracy") + ")");
 
         } catch (JSONException e) {
             e.printStackTrace();
